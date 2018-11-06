@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <Title>Viper Engine Documentation</Title>
+</head>
+
+<body>
+
+  <h1>Viper Engine Documentation<h1>
+
+  <p>
+    Class meant to provide a simple method to gather real time input data from a
+    terminal. Currently only tested for Windows and uses msvcrt.
+  </p>
+
+  <h3>Global Variables<h3>
+
+  <a href="#keyBinders">keyBinders</a> </br>
+  <a href="#lastKeyDown">lastKeyDown</a> </br>
+  <a href="#lastKeyUp">lastKeyDown</a> </br>
+  <a href="#currentKeyDown">currentKeyDown</a> </br>
+
+  <h3>Global Methods<h3>
+
+  <a href="#input">input()</a> <br />
+  <a href="#addKeyBinding">addKeyBinding()</a> <br />
+  <a href="#modifyKeyBinding">modifyKeyBinding()</a> <br />
+  <a href="updateInput">updateInput()</a> <br />
+
+
+    <div>
+      <h4 id="viper">viper([height, length, screenPosition, FPS, layers])</h4>
+      <p>
+        Return Value: Instance of the viper class.<br />
+        Parameters: <br />
+        height: Integer representing the height of the terminal screen in characters. Default value is 50 chars.<br />
+        length: Integer representing the length of the terminal screen in characters. Default value is 70 chars.<br />
+        screenPosition: String that specifies where screen should be drawn in relation to the terminal. Default value is "center". <br />
+        FPS: Integer that signifies frames per second, default value is 1. <br />
+        layers: Integer of how many animation layers should exist on top of base layer 0. Default value is 1. <br />
+      </p>
+    </div>
+
+    <div>
+      <h4 id="viper">viper([height, length, screenPosition, FPS, layers])</h4>
+      <p>
+        Return Value: Instance of the viper class.<br />
+        Parameters: <br />
+        height: Integer representing the height of the terminal screen in characters. Default value is 50 chars.<br />
+        length: Integer representing the length of the terminal screen in characters. Default value is 70 chars.<br />
+        screenPosition: String that specifies where screen should be drawn in relation to the terminal. Default value is "center". <br />
+        FPS: Integer that signifies frames per second, default value is 1. <br />
+        layers: Integer of how many animation layers should exist on top of base layer 0. Default value is 1. <br />
+      </p>
+    </div>
+
+    <div>
+      <h4 id="update">update()</h4>
+      <p>
+        Return Value: None <br />
+        Parameters: None <br />
+        Update function "ticks" viper and instructs the game engine to progress one cycle.
+        Should be run from an endless while loop in the main game script.
+      </p>
+    </div>
+
+
+</body>
+
+</html>

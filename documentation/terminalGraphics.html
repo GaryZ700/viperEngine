@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <Title>terminalGraphics Class Documentation</title>
+</head>
+
+<body>
+
+  <h1>terminalGraphics Class Documentation</h1>
+  <h3>Description<h3>
+
+  <p>The terminalGraphics class is designed to allow Python developers
+    to draw text graphics onto the terminal, as well as providing the abillity
+  to draw basic shapes and lines to simplify graphics creatoin. Currently
+  only works for Windows based systems, Unix support will be implemented at a later date.</p>
+
+  <h3>Global Variables<h3>
+
+
+  <a href="#screen">screen</a> <br />
+  <a href="#length">length</a> <br />
+  <a href="#height">height</a> <br />
+  <a href="#screenPosition">screenPosition</a>
+
+  <h3>Global Methods<h3>
+
+  <a href="#terminalGraphics">terminalGraphics()</a> <br />
+  <a href="#newScreen">newScreen()</a> <br />
+  <a href="#clearScreen">clearScreen()</a> <br />
+  <a href="#refresh">refresh()</a> <br />
+  <a href="#drawPoint">drawPoint()</a> <br />
+  <a href="#drawVerticalLine">drawVerticalLine()</a> <br />
+  <a href="#drawLine">drawLine()</a> <br />
+  <a href="#drawRect">drawRect()</a> <br />
+  <a href="#drawText">drawText()</a> <br />
+
+  <div>
+    <h4 id="screen">screen</h4>
+    <p>
+        Is a list containing one internal list for each vertical row on the
+        terminal screen, and within each list, contains a string consisting of
+        only a space, " ", with each position representing each horizontal column
+        on the terminal. This creates a screen[y][x] list to acess any (x,y)
+        "pixel" on the terminal. Origin  is (0,0), in the bottom right corner of
+        the screen, and Y max is height - 1, and X max is length - 1.
+    </p>
+  </div>
+
+  <div>
+    <h4 id="length">length</h4>
+    <p>
+        length contains the integer value of the length of the terminal screen
+        in characters. Directly coresponds to len(<a href="#screen">screen[0]</a>),
+        or the length of any of the internal lists contained witiin screen.
+    </p>
+  </div>
+
+  <div>
+    <h4 id="height">height</h4>
+    <p>
+        height contains the integer value of the height of the terminal screen
+        in characters. Directly coresponds to len(<a href="#screen">screen</a>).
+    </p>
+  </div>
+
+  <div>
+    <h4 id="screenPosition">screenPosition</h4>
+    <p>
+        screenPosition is a string which refers to the position of the position
+        of the screen relative to the terminal window. Currently, the only
+        supported options are "center" and "full." <br />
+        "center" will draw the screen in the coordinate center of the terminal screen. <br />
+        "full" will draw the screen to fill up the entire terminal.
+    </p>
+  </div>
+
+<h3>Methods<h3>
+
+  <div>
+    <h4 id="terminalGraphics">terminalGraphics([forcedSize, screenPosition])</h4>
+    <p>
+      Return Value: instance of the terminalGrphics class <br />
+      Parameters: <br />
+      forcedSize: <br />
+      Default: False <br />
+      Refers to whether size of of terminal should be set to a certain size.
+      To set this value pass in a list containg ints for the length and height of the screen.
+      Ex. [lengthInt, heightInt] <br />
+      screenPosition: <br />
+      Default: "full" <br />
+      String that determines where the screen will be drawn in relation
+      to the terminal. See <a heref="#screenPosition">screenPosition</a> <br />
+
+    </p>
+  </div>
+
+  <div>
+    <h4 id="newScreen">newScreen()</h4>
+    <p>
+      Return Value: new and empty instance of the screen variable <br />
+      Parameters: None <br />
+    </p>
+  </div>
+
+  <div>
+    <h4 id="clearScreen">clearScreen()</h4>
+    <p>
+      Return Value: None <br />
+      Parameters: None <br />
+      Clears the screen from all characters.
+    </p>
+  </div>
+
+  <div>
+    <h4 id="refresh">refresh()</h4>
+    <p>
+      Return Value: None <br />
+      Parameters: None <br />
+      Draws the current screen stored in memory onto the terminal.
+    </p>
+  </div>
+
+  <div>
+    <h4 id="drawPoint">drawPoint(point, [symbol])</h4>
+    <p>
+      Return Value: None <br />
+      Parameters: <br />
+      point: [x,y] list of where to draw a point on the screen. <br />
+      symbol: String of a single char to draw at specifed point. Default value is "V".
+    </p>
+  </div>
+
+  <div>
+    <h4 id="drawVerticalLine">drawVerticalLine(x, yPoint, [symbol])</h4>
+    <p>
+      Return Value: None <br />
+      Parameters: <br />
+      x: x position of where vertical line should be placed. <br />
+      yPoint: [y0, y1] list of y points where line should start from and end at. <br />
+      symbol: String of char used to draw line, default symbol is "|".
+    </p>
+  </div>
+
+  <div>
+    <h4 id="drawLine">drawLine(point1, point2, [symbol])</h4>
+    <p>
+      Return Value: None <br />
+      Parameters: <br />
+      point1: [x,y] position of where line should begin. <br />
+      point2: [x,y] position of where line should end. <br />
+      symbol: String of char used to draw line, default symbol is "/".
+    </p>
+  </div>
+
+  <div>
+    <h4 id="drawRect">drawRect(height, length,[origin, fill, verticalSymbol, horizontalSymbol])</h4>
+    <p>
+      Return Value: None <br />
+      Parameters: <br />
+      Still under construction. Need to rebuild method to create square line by line
+      from top to bottom. Need to finish testing for bugs.
+    </p>
+  </div>
+
+  <div>
+    <h4 id="drawText">drawRect(text, point)</h4>
+    <p>
+      Return Value: None <br />
+      Parameters: <br />
+      Text: String of text to print to the screen. <br />
+      Point: [x,y] position of where first character should begin to be printed from. <br />
+      Future work: Allow text to be printed on a line, at angles and etc.
+    </p>
+  </div>
+
+
+</body>
+
+</html>
