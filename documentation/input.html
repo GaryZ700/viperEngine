@@ -17,8 +17,8 @@
   <h3>Global Variables<h3>
 
   <a href="#keyBinders">keyBinders</a> </br>
-  <a href="#lastKeyDown">lastKeyDown</a> </br>
   <a href="#lastKeyUp">lastKeyDown</a> </br>
+  <a href="#lastKeyDown">lastKeyDown</a> </br>
   <a href="#currentKeyDown">currentKeyDown</a> </br>
 
   <h3>Global Methods<h3>
@@ -26,45 +26,70 @@
   <a href="#input">input()</a> <br />
   <a href="#addKeyBinding">addKeyBinding()</a> <br />
   <a href="#modifyKeyBinding">modifyKeyBinding()</a> <br />
-  <a href="updateInput">updateInput()</a> <br />
+  <a href="#updateInput">updateInput()</a> <br />
 
+
+  <h3>Global Variables<h3>
 
     <div>
-      <h4 id="viper">viper([height, length, screenPosition, FPS, layers])</h4>
+      <h4 id="keyBinders">keyBinders</h4>
       <p>
-        Return Value: Instance of the viper class.<br />
-        Parameters: <br />
-        height: Integer representing the height of the terminal screen in characters. Default value is 50 chars.<br />
-        length: Integer representing the length of the terminal screen in characters. Default value is 70 chars.<br />
-        screenPosition: String that specifies where screen should be drawn in relation to the terminal. Default value is "center". <br />
-        FPS: Integer that signifies frames per second, default value is 1. <br />
-        layers: Integer of how many animation layers should exist on top of base layer 0. Default value is 1. <br />
+        keyBinders is a dictonary contaning sublists with keys refering to keyboard keys to listen to.
+        The associated values to each key is a list, with the first index containg an input event keyword,
+        and the second position containing either a reference to a function to execute, or false. <br/>
+        Ex. {"a":["onKeyUp",functionReference]} <br />
+        Input Events: "onKeyUp", "onKeyDown", or "whileKeyDown" <br />
+        Funtion: Reference to function to execute, or False if no function is to be executed.
       </p>
     </div>
 
     <div>
-      <h4 id="viper">viper([height, length, screenPosition, FPS, layers])</h4>
+      <h4 id="lastKeyUp">lastKeyUp</h4>
       <p>
-        Return Value: Instance of the viper class.<br />
-        Parameters: <br />
-        height: Integer representing the height of the terminal screen in characters. Default value is 50 chars.<br />
-        length: Integer representing the length of the terminal screen in characters. Default value is 70 chars.<br />
-        screenPosition: String that specifies where screen should be drawn in relation to the terminal. Default value is "center". <br />
-        FPS: Integer that signifies frames per second, default value is 1. <br />
-        layers: Integer of how many animation layers should exist on top of base layer 0. Default value is 1. <br />
+        String of last key that the user released.
       </p>
     </div>
 
     <div>
-      <h4 id="update">update()</h4>
+      <h4 id="lastKeyDown">lastKeyDown</h4>
       <p>
-        Return Value: None <br />
-        Parameters: None <br />
-        Update function "ticks" viper and instructs the game engine to progress one cycle.
-        Should be run from an endless while loop in the main game script.
+        String of last key that was held down.
       </p>
     </div>
 
+    <div>
+      <h4 id="currentKeyDown">lastKeyDown</h4>
+      <p>
+        String of key that is currently being held down.
+      </p>
+    </div>
+
+    <h3>Global Methods<h3>
+
+      <div>
+        <h4 id="addKeyBinding">addKeyBinding(key, event, function)</h4>
+        <p>
+          Return Value: None <br />
+          Parameters: <br />
+          key: string of character to bind event to. <br />
+          event: string of keyboard event to listen to. See <a href="#keyBinders">keyBinders</a>
+          for more information. <br />
+          function: Reference to function to execute upon occurance of event, default value is False,
+          no function should be executed upon completion of the event. <br />
+          If key binding alreadly exists, existing key binding is overwritten.
+        </p>
+      </div>
+
+      <div>
+        <h4 id="updateInput">updateInput()</h4>
+        <p>
+          Return Value: None <br />
+          Parameters: None <br />
+          Checks keyboard input and updates <a href="#lastKeyDown">lastKeyDown</a>,
+          <a href="#lastKeyUp">lastKeyUp</a>, and <a href="#currentKeyDown">currentKeyDown</a>.
+          Also checks and executes any functions in <a href="#keyBinders">keyBinders</a>.
+        </p>
+      </div>
 
 </body>
 
