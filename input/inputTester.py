@@ -5,6 +5,6 @@ i = input(allKeys=True)
 
 while(True):
 
-    time.sleep(0.01)
+    time.sleep(0.1)
     i.update()
     print(i.currentKeyDown + "THIS KEY IS CURRENTLY Down")

@@ -87,7 +87,7 @@ class input():
             key = self.msvcrt.getch()
 
             #check if key is an arrow key
-            if(key == b'\x00'):
+            if(key == b'\x00' or key == b'\xe0'):
                 #if yes, get actual key value from msvcrt, and translate to arrow key from arrowKeys dictionary
                 key = self.arrowKeys[self.msvcrt.getch()]
 
