@@ -1,3 +1,1 @@
-from viperEngine import viper
-
-V = viper()
+import viper
