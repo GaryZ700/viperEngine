@@ -7,6 +7,8 @@
 #input object allows developers to easily gain access to real time input with python
 class input():
 
+    import msvcrt
+
     #init empty dictonary for holding keyBinders
     #holds subslist containg key to listen for, and code to execute given certain certain condition
     #ex, onKeyUp, onKeyDown, whileKeyDown, or False, if no action to be taken
@@ -26,13 +28,23 @@ class input():
     #os, holds string to signify os, is either "posix" for Linux, or "nt" for Windows
     os = ""
 
-    #dictonary of keyboard arrows
-    arrowKeys = {
+    #dictonary of keyboard charcode to arrowKeys
+    charToArrows = {
 
     b'H':"UP",
     b'P':"DOWN",
     b'M':"RIGHT",
     b'K':"LEFT"
+
+    }
+
+    #dictionary of keyBoard arrows to char code
+    arrowKeys ={
+
+    "UP":b'H',
+    "DOWN":b'P',
+    "RIGHT":b'M',
+    "LEFT":b'K'
 
     }
 
@@ -43,16 +55,13 @@ class input():
     #self, refers to instance of this class
     #keyBinders, refers to intial list of keys to listen to, default is none
     #allKeys, bool to decide if all keys should be listend to, default is False
-    def __init__(self, os, keyBinders={}, allKeys=False):
+    def __init__(self, keyBinders={}, allKeys=False):
 
         #assign keyListeners to instance of this class
         self.keyBinders = keyBinders
 
         #set allKeys bool
         self.allKeys = allKeys
-
-        #depending on os, laod appropriate input module
-        if(so)
 
 ###############################################################################
 
@@ -76,6 +85,26 @@ class input():
 
 ###############################################################################
 
+    #getKey Function
+    #returns string of key that was pressed or an empty string if no key was pressed
+    def getKey():
+
+        #check which os is running, and depending on the OS use the appropriate command to get the pressed key
+        #if windows is running as the os
+        #check if there is a key press wating to be parsed, if yes,
+        #return that character
+        if(os == "nt"):
+                if(self.msvcrt.kbhit()):
+                    return msvcrt.getch()
+                else:
+                    return ""
+
+        #if linux based system is being run, then return next inputted character
+        else:
+            return sys.stdin.read(1)
+
+###############################################################################
+
     #update function
     #returns any keys that were just pressed on the keyboard, returns False if no keys were pressed
     #self, refers to instance of the input class
@@ -91,11 +120,11 @@ class input():
             #check if key is an arrow key
             if(key == b'\x00' or key == b'\xe0'):
                 #if yes, get actual key value from msvcrt, and translate to arrow key from arrowKeys dictionary
-                key = self.arrowKeys[self.msvcrt.getch()]
+                key = self.charToArrows[self.msvcrt.getch()]
 
             #else if it is a regular key, then use decode to get regualar character
             else:
-                key = self.msvcrt.getch().decode("ASCII")
+                key = key.decode("ASCII")
 
             #check if key exist in the key bindings
             if(key in self.keyBinders or self.allKeys):
