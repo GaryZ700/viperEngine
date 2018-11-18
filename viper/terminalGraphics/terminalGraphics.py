@@ -29,6 +29,7 @@ class terminalGraphics():
 ###############################################################################
 
     #initialization function for the terminal graphics class
+    #returns new instance of the terminalGraphics class
     #self, reference to instance of the terminal graphics class
     #forcedSize, is [length,height] size of virtual screen that should be forced to be maintained, despite larger terminal screen
     #screenPosition, string representing where virtual screen should be drawn onto the screen, please see above line where variable is defined for further information on keywords usable

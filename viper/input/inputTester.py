@@ -1,7 +1,8 @@
 import msvcrt
 import time
 from input import input
-i = input(allKeys=True)
+i = input()
+i.addKeyBinding("UP", "a")
 
 while(True):
 
