@@ -2,31 +2,34 @@ import viper
 import time
 
 #create new instances of the terminal graphics and input classes
-TG = viper.TG([50,30], "center")
+TG = viper.TG()
 
 #set up input system
 I = viper.I()
 
-I.addKeyBinding("DOWN","whileKeyDown")
-I.addKeyBinding("UP", "whileKeyDown")
-I.addKeyBinding("LEFT", "whileKeyDown")
-I.addKeyBinding("RIGHT", "whileKeyDown")
+def moveUp():
+    ship.y -= 2
+def moveDown():
+    ship.y += 2 
+def moveLeft():
+    ship.x -= 1
+def moveRight():
+    ship.x += 1
+
+I.addKeyBinding("DOWN","whileKeyDown", [moveUp])
+I.addKeyBinding("UP", "whileKeyDown", [moveDown])
+I.addKeyBinding("LEFT", "whileKeyDown", [moveLeft])
+I.addKeyBinding("RIGHT", "whileKeyDown", [moveRight])
 
 
-#TG.loadImage()
+ship = viper.VO(TG.loadImage("plane"))
 
 #intialize main graphics screen
-
-#init position for box
-x = 0
-y = 0
 
 while(True):
 
     time.sleep(0.01);
-
+    TG.addImage(ship.object, ship.x, ship.y)
     TG.refresh();
     TG.clearScreen();
-    TG.drawRect(10,5,[x,y])
-
     I.update()

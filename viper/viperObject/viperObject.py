@@ -40,11 +40,11 @@ class viperObject():
     def __init__(self, objectArg=[], xArg=0, yArg=0, componetsArg=[], functionsArg=[]):
 
         #intialize class variables with passed in args
-        object = objectArg
-        x = xArg
-        y = yArg
-        componets = componetsArg
-        functions = functionsArg
+        self.object = objectArg
+        self.x = xArg
+        self.y = yArg
+        self.componets = componetsArg
+        self.functions = functionsArg
 
 ###############################################################################
 
@@ -57,6 +57,6 @@ class viperObject():
         for componet in componets:
             componet.update()
 
-        #iterate through all functions passed into this class , and execute each function 
+        #iterate through all functions passed into this class , and execute each function
         for function in functions:
             function()

@@ -145,7 +145,7 @@ class terminalGraphics():
 
         #print all of line to print excluding final newline char
         #immdeialty flush out the screen to the terminal to ensure smooth framerate
-        print(lineToPrint[:-1])
+        print(lineToPrint)
         sys.stdout.flush()
 
 ###############################################################################
@@ -303,7 +303,7 @@ class terminalGraphics():
     #x, x position of bottom left most point of the image, default value is 0
     #y, y position of the bottom left most point of the image, default value is 0
     def addImage(self, image, x=0, y=0):
-        
+
         for lineNumber, line in enumerate(image):
 
                 #get newY relative to the screen
