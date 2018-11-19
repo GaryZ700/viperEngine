@@ -3,9 +3,17 @@ import time
 
 #create new instances of the terminal graphics and input classes
 TG = viper.TG([50,30], "center")
-I = viper.I()
-I.addKeyBinding("DOWN","a")
 
+#set up input system
+I = viper.I()
+
+I.addKeyBinding("DOWN","whileKeyDown")
+I.addKeyBinding("UP", "whileKeyDown")
+I.addKeyBinding("LEFT", "whileKeyDown")
+I.addKeyBinding("RIGHT", "whileKeyDown")
+
+
+#TG.loadImage()
 
 #intialize main graphics screen
 
@@ -22,6 +30,3 @@ while(True):
     TG.drawRect(10,5,[x,y])
 
     I.update()
-
-    if(I.lastKeyDown == "DOWN"):
-        x+= 1
