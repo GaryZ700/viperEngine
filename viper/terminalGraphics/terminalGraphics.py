@@ -267,3 +267,47 @@ class terminalGraphics():
 
             #draw letter at correct point
             self.drawPoint([x,y], text[charNumber])
+
+###############################################################################
+
+    #loadImage function
+    #returns a screenlist object with all the characters forom an external file
+    #fileName, string of file to load image from
+    def loadImage(self, fileName):
+
+        #open file
+        f = open(fileName, "r")
+
+        #init empty image list
+        image = []
+        lineCounter = -1
+
+        #iterate through all lines and characters in file
+        for line in f:
+
+            #prepare new line in the image list
+            lineCounter += 1
+            image.append([])
+
+            for char in line:
+                if('\n' != char):
+                    image[lineCounter].append(char)
+
+        return image
+
+###############################################################################
+
+    #addImage, takes image list and adds it to the screen
+    #self, refers to instance of the terminalGraphics class
+    #image, list of image text
+    #x, x position of bottom left most point of the image, default value is 0
+    #y, y position of the bottom left most point of the image, default value is 0
+    def addImage(self, image, x=0, y=0):
+        
+        for lineNumber, line in enumerate(image):
+
+                #get newY relative to the screen
+                newY = lineNumber + len(self.screen) - len(image) - y
+
+                for xPosition, char in enumerate(line):
+                    self.screen[newY][x+xPosition] = char
