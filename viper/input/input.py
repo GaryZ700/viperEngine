@@ -11,9 +11,9 @@ class input():
 
     #init empty dictonary for holding keyBinders
     #holds subslist containg key to listen for, and code to execute given certain certain condition
-    #ex, onKeyUp, onKeyDown, whileKeyDown, or False, if no action to be taken
-    #{"key":["onKeyUp", functionReference]}
-    keyBinders= {}
+    #ex, whileKeyDown, whileKeyUp
+    #{"key":["onKeyUp", [functions]}
+    keyBinders = {}
 
     #allKeys bool decides whether this function should listen to all keys on the keyboard
     allKeys = False
@@ -21,6 +21,7 @@ class input():
     #holds string of lastKeyUp/Down
     lastKeyUp = ""
     lastKeyDown = ""
+    onKeyDown = ""
 
     #holds string of current key being held
     currentKeyDown = ""
@@ -35,16 +36,6 @@ class input():
     b'P':"DOWN",
     b'M':"RIGHT",
     b'K':"LEFT"
-
-    }
-
-    #dictionary of keyBoard arrows to char code
-    arrowKeys ={
-
-    "UP":b'H',
-    "DOWN":b'P',
-    "RIGHT":b'M',
-    "LEFT":b'K'
 
     }
 
@@ -71,10 +62,13 @@ class input():
     #string of character to add binding to
     #event, string of keyboard event to listen to, all events are listed above
     #function, reference to function to execute upon event occurance, default value is False, no function used
-    def addKeyBinding(self, key, event, function=False):
+    def addKeyBinding(self, key, event, function=[]):
 
         #add in key to keyBinders
-        self.keyBinders[key] = [event, function]
+        if(key in self.keyBinders):
+            self.keyBinders[key].append([event,function])
+        else:
+            self.keyBinders[key] = [[event, function]]
 
 ###############################################################################
 
@@ -105,10 +99,10 @@ class input():
 
 ###############################################################################
 
-    #update function
-    #returns any keys that were just pressed on the keyboard, returns False if no keys were pressed
-    #self, refers to instance of the input class
-    def update(self):
+    #getInput function, gets input from the keyboard and updates current key down and lastKeyDown
+    #has no return value
+    #self refers to instance of the input class
+    def getInput(self):
 
         #check if there is input waiting to be acquired
         #if yes, then parse that input
@@ -122,9 +116,10 @@ class input():
                 #if yes, get actual key value from msvcrt, and translate to arrow key from arrowKeys dictionary
                 key = self.charToArrows[self.msvcrt.getch()]
 
-            #else if it is a regular key, then use decode to get regualar character
+                #else if it is a regular key, then use decode to get regualar character
             else:
                 key = key.decode("ASCII")
+                self.counter = 0
 
             #check if key exist in the key bindings
             if(key in self.keyBinders or self.allKeys):
@@ -133,9 +128,45 @@ class input():
                 self.lastKeyDown = self.currentKeyDown
                 self.currentKeyDown = key
 
+
         #if no keys are being pressed then update currentKey down as such and update lastKeyDown
         else:
+
             self.lastKeyDown = self.currentKeyDown
             self.currentKeyDown = ""
+
+###############################################################################
+
+    #executeFunctions function
+    #has no return value
+    #self, refers to instance of the executeFunctions functoin
+    #functions refers to list of functions to execute
+    def executeFunctions(self, functions):
+
+        #iterate through all functions and execute each one
+        for function in functions:
+            function()
+
+###############################################################################
+
+    #update function
+    #returns any keys that were just pressed on the keyboard, returns False if no keys were pressed
+    #self, refers to instance of the input class
+    def update(self):
+
+        #update input
+        self.getInput()
+
+        #execute events tied to keystrokes
+        for key, bindings in self.keyBinders.items():
+            for binding in bindings:
+
+                #check which event key is binded to
+                #and check appropriate input variables to ensure critera are met before executing associated functions
+                if(binding[0] == "whileKeyUp" and self.currentKeyDown != key):
+                    self.executeFunctions(binding[1])
+
+                elif(binding[0] == "whileKeyDown" and self.currentKeyDown == key):
+                    self.executeFunctions(binding[1])
 
 ###############################################################################
